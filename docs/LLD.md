@@ -188,11 +188,11 @@ sequenceDiagram
 
 | Area | Observed Behavior | Retry Behavior |
 | --- | --- | --- |
-| Initial auth lookup | `App` performs `GET /me` without an explicit `try/catch`; failures leave the user state as `null` because no alternate branch is implemented | No explicit retry logic |
+| Initial auth lookup | `App` performs `GET /me` without an explicit `try/catch` or documented fallback branch around request failure | No explicit retry logic |
 | Project list | `Projects` catches fetch failures, clears the list to `[]`, and renders the thrown error message | No explicit retry logic |
 | Project detail | `Project` catches fetch failures and maps `404` and `422` to `Project not found` | No explicit retry logic |
 | User directory for forms | `ProjectFormContent` stores an error when `GET /users` fails and changes the dropdown placeholder text | No explicit retry logic |
-| Create or update mutation | Non-`200` responses surface a generic description-field error and log the HTTP status with `console.error` | No explicit retry logic |
+| Create or update mutation | The code treats `response.status === 200` as success; all other observed statuses surface a generic description-field error and are logged with `console.error` | No explicit retry logic |
 | Delete mutation | The delete handler issues `DELETE /projects/{id}` and immediately removes the row from local state without checking the response body | No explicit retry logic or rollback |
 
 ## Configuration & Environment-Specific Behavior

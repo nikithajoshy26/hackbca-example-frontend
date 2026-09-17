@@ -112,7 +112,8 @@ flowchart TB
 - Production deployment is a static-asset publish flow:
   1. inject the backend base URL at build time through `REACT_APP_API_URL`,
   2. run `npm run build`,
-  3. host the generated `build/` assets behind a static web server (`README.md`).
+  3. host the generated `build/` assets behind a static web server, and
+  4. configure that host to rewrite unknown application routes back to the SPA entry point so deep links such as `/projects/new` and `/projects/:id` can load correctly.
 - Backend release orchestration, CDN configuration, TLS termination location, and rollback strategy are not determined from repository.
 
 ## Data Protection
