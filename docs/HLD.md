@@ -118,7 +118,7 @@ flowchart TB
 
 ## Data Protection
 
-- **In transit:** The production example in `README.md` uses an `https://` API URL, indicating intended TLS-protected browser-to-API traffic in production.
+- **In transit:** The production example in `README.md` uses an `https://` API URL, so deployments should prefer TLS-protected browser-to-API traffic. Actual transport enforcement is not determined from repository.
 - **At rest:** No client-side persistence layer such as Local Storage, IndexedDB, or service-worker caching is implemented in this repository; browser memory is the only directly observable storage location.
 - **Secrets handling:** The only environment variable referenced by the frontend is `REACT_APP_API_URL`, which is configuration rather than a secret (`src/utils.js`). No secrets were found in tracked repository files.
 - **Third-party data sharing:** The application requests a Google Fonts stylesheet from `fonts.googleapis.com` and initiates authentication by navigating to backend login endpoints that reference Google sign-in flows (`src/index.css`, `src/Navbar.js`, `src/pages/Home.js`).

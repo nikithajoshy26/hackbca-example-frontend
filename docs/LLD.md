@@ -192,7 +192,7 @@ sequenceDiagram
 | Project list | `Projects` catches fetch failures, clears the list to `[]`, and renders the thrown error message | No explicit retry logic |
 | Project detail | `Project` catches fetch failures and maps `404` and `422` to `Project not found` | No explicit retry logic |
 | User directory for forms | `ProjectFormContent` stores an error when `GET /users` fails and changes the dropdown placeholder text | No explicit retry logic |
-| Create or update mutation | The code treats `response.status === 200` as success; all other observed statuses surface a generic description-field error and are logged with `console.error` | No explicit retry logic |
+| Create or update mutation | In the current `ProjectFormContent` implementation, both mutation handlers branch on `response.status === 200`; the alternate branch sets a generic description-field error and logs the status with `console.error` | No explicit retry logic |
 | Delete mutation | The delete handler issues `DELETE /projects/{id}` and immediately removes the row from local state without checking the response body | No explicit retry logic or rollback |
 
 ## Configuration & Environment-Specific Behavior
