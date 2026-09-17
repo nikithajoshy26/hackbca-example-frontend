@@ -1,5 +1,7 @@
 # High-Level Design: hackbca-example-frontend
 
+## Title & Metadata
+
 | Metadata | Value |
 | --- | --- |
 | Repository | `nikithajoshy26/hackbca-example-frontend` |
